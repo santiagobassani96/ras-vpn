@@ -1,4 +1,5 @@
 # Simple vpn script
+[![codecov](https://codecov.io/gh/santiagobassani96/ras-vpn/branch/master/graph/badge.svg)](https://codecov.io/gh/santiagobassani96/ras-vpn)
 
 This script is meant to reboot my raspberry pi connection to openvpn server
 
@@ -19,3 +20,12 @@ any vpn server out there and keeps the connection alaive while it's working prop
 
 ## CI workflow:
 based on this [post](https://medium.com/@wkrzywiec/how-to-write-good-quality-python-code-with-github-actions-2f635a2ab09a)
+
+## Tools:
+- `python 3.8`
+- `virtualenv`
+- `pipreqs`
+- `black`
+- `isort`
+- `flake8`
+- `pytest`
