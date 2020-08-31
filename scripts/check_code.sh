@@ -8,5 +8,15 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd ${DIR}
 cd ..
 
-`isort ras-vpn`
-`black ras-vpn`
+`isort ras_vpn`
+`black ras_vpn`
+
+# also check for main file
+
+`isort mission_control.py`
+`black mission_control.py`
+
+# finally analyze test folder
+
+`isort test`
+`black test`

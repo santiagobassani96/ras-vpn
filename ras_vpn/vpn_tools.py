@@ -8,28 +8,15 @@ import logging
 import random
 import shutil
 import time
-import zipfile
+from zipfile import ZipFile
 
 import requests
-from settings import CREDENTIALS_FILE, VPN_PATH, vpn_password, vpn_username
+from .settings import CREDENTIALS_FILE, VPN_PATH, vpn_password, vpn_username, TEST_URL, SLEEP_TIMER
 
 """
 This script aims to solve my anoying internet problem. By susbcribing a 
 service which could potentially restart as many times as it needs
 """
-
-logging.basicConfig(
-    format="%(asctime)s %(levelname)-8s %(message)s",
-    level=logging.INFO,
-    datefmt="%Y-%m-%d %H:%M:%S",
-    filename="log.txt",
-)
-
-
-test_url = "https://drive.google.com/"
-sleep_timer = 30 * 60  # 30 minutes
-
-vpns = "vpns"
 
 
 def add_credentials(vpns: [str], cred_path: str):
@@ -76,14 +63,14 @@ def test_connection():
     """
     Test internet connection until failure
     """
-    resp = requests.get(test_url)
+    resp = requests.get(TEST_URL)
     if resp.status_code == 200:
         return True
     else:
         return False
 
 
-def main():
+def connect():
     # if uncompressed, erased old folder
     try:
         shutil.rmtree(VPN_PATH + ".zip")
@@ -93,31 +80,29 @@ def main():
 
     # uncompress vpn zipfile
     # this will leave a folder 'vpns' with all config ovpns files
-    with open(VPN_PATH + ".zip", "f") as f:
-        zipfile.ZipFile(f).extractall()
+
+    ZipFile(VPN_PATH + ".zip").extractall()
 
     update_cred_file(vpn_username, vpn_password)
 
     # first we add credentials to each file
-    add_credentials(vpns, CREDENTIALS_FILE)
+    add_credentials(VPN_PATH, CREDENTIALS_FILE)
     # next we try to connect
     while True:
         try:
-            vpn = random.choice(os.listdir(vpns))
+            vpn = random.choice(os.listdir(VPN_PATH))
             logging.info("trying to connect to {}".format(vpn))
-            res = os.system("sudo openvpn {}".format(os.path.join(vpns, vpn)))
+            res = os.system("sudo openvpn {}".format(os.path.join(VPN_PATH, vpn)))
             logging.info("result was {}".format(res))
             while test_connection():
                 # try internet connection
                 # this method raises an exception which
                 # ends the cicle and changes the vpn connection.
                 logging.info("spleeing for 30 min")
-                time.sleep(sleep_timer)
+                time.sleep(SLEEP_TIMER)
 
             return res
         except Exception as e:
             logging.error("there was an error")
 
 
-if __name__ == "__main__":
-    main()

@@ -8,3 +8,6 @@ __MACOSX
 *.zip
 .pytest_cache
 /vpns
+
+*.up
+*.txt
