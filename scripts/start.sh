@@ -12,3 +12,5 @@ cd ..
 
 # launch program
 `python3 ras_vpn/mission_control.py`
+
+cd /
