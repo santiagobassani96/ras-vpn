@@ -22,6 +22,7 @@ any vpn server out there and keeps the connection alaive while it's working prop
 - Download repo
 - `cd ras-vpn`
 - Set `export VPN_USERNAME=...` `export VPN_PASSWORD=...`
+- `virtualenv venv -p python3`. It is important you keep the name `venv` as the start scripts depends on it
 - `sudo crontab -e`
 
 - `@reboot sh /path/to/repo/scripts/start.sh > /home/pi/logs/cronlog 2>&1` 

@@ -106,7 +106,7 @@ def connect():
                 # try internet connection
                 # this method raises an exception which
                 # ends the cicle and changes the vpn connection.
-                logging.info("spleeing for 30 min")
+                logging.info("sleeping for 30 min")
                 time.sleep(SLEEP_TIMER)
 
             return res
