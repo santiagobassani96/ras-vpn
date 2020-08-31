@@ -11,7 +11,15 @@ import time
 from zipfile import ZipFile
 
 import requests
-from .settings import CREDENTIALS_FILE, VPN_PATH, vpn_password, vpn_username, TEST_URL, SLEEP_TIMER
+
+from .settings import (
+    CREDENTIALS_FILE,
+    SLEEP_TIMER,
+    TEST_URL,
+    VPN_PATH,
+    vpn_password,
+    vpn_username,
+)
 
 """
 This script aims to solve my anoying internet problem. By susbcribing a 
@@ -104,5 +112,3 @@ def connect():
             return res
         except Exception as e:
             logging.error("there was an error")
-
-

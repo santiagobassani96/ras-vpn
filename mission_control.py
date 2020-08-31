@@ -1,5 +1,7 @@
-from ras_vpn.vpn_tools import connect
 import logging
+
+from ras_vpn.vpn_tools import connect
+
 logging.basicConfig(
     format="%(asctime)s %(levelname)-8s %(message)s",
     level=logging.INFO,
