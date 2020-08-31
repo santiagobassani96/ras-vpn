@@ -1,0 +1,10 @@
+.env
+venv
+*.pyc
+**/__pycache__
+.vscode
+__MACOSX
+.DS_Store
+*.zip
+.pytest_cache
+/vpns
