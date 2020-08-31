@@ -11,4 +11,4 @@ cd ..
 # now we are right at the root of the repo
 
 # launch program
-`python3 mission_control.py`
+`python3 ras-vpn/mission_control.py`
